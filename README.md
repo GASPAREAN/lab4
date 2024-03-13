@@ -26,44 +26,45 @@ In this laboratory work, the Processing Forms in PHP was studied.
 
 PHPCopy code
 
-`require_once 'Validator.php';
+```PHP
+require_once 'Validator.php';
 $validator = new Validator();
 
 $validator->addValidation('name', function($value) {
-if (empty($value))
-return false;
-if (strlen($value) <= 3)
-return false;
-if (strlen($value) >= 20)
-return false;
-if (preg_match('/\d/', $value))
-return false;
-return true;
+    if (empty($value))
+        return false;
+    if (strlen($value) <= 3)
+        return false;
+    if (strlen($value) >= 20)
+        return false;
+    if (preg_match('/\d/', $value))
+        return false;
+    return true;
 }, 'Invalid name. Name should contain between 3 and 20 characters and should not contain digits.');
 
 $validator->addValidation('email', function($value) {
-if (empty($value))
-return false;
-if (!filter_var($value, FILTER_VALIDATE_EMAIL))
-return false;
-return true;
+    if (empty($value))
+        return false;
+    if (!filter_var($value, FILTER_VALIDATE_EMAIL))
+        return false;
+    return true;
 }, 'Invalid email.');
 
 $validator->addValidation('comment', function($value) {
-return !empty($value);
+    return !empty($value);
 }, 'Please write your feedback.');
 
 $validator->addValidation('agreement', function($value) {
-return !empty($value);
+    return !empty($value);
 }, 'Please confirm that you agree to data processing.');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$data = [
-'name' => $_POST['name'] ?? '',
-'email' => $_POST['email'] ?? '',
-'comment' => $_POST['comment'] ?? '',
-'agreement' => isset($_POST['agreement']),
-];
+    $data = [
+        'name' => $_POST['name'] ?? '',
+        'email' => $_POST['email'] ?? '',
+        'comment' => $_POST['comment'] ?? '',
+        'agreement' => isset($_POST['agreement']),
+    ];
 
     $errors = $validator->validateForm($data);
 
@@ -84,8 +85,8 @@ $data = [
         echo "</div>";
         echo "</div>";
     }
-}`
-
+}` 
+```
 ## 4. Example of Project Usage (with attached screenshots)
 
 ![Example of program execution](/images/Screenshot 2024-03-13 215856.png)
@@ -129,3 +130,5 @@ $data = [
 ### Task №4: Creating a Form `zad4.php`
 
 #### 1. Create a test with 3 questions using input, type radio, and input, type checkbox and ask for the user's name. Check the form completion and the options selected by the user. Display the results on the screen.
+
+The translated and modified report provides a clear overview of the project, instructions for running it, documentation on how to use the Validator class for form validation, and details on the tasks completed during the laboratory work.
